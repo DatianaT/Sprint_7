@@ -6,7 +6,6 @@ import org.example.courier.CourierClient;
 import org.example.models.Courier;
 import org.example.models.CreateCourierWithoutLogin;
 import org.example.models.CreateCourierWithoutPassword;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.apache.http.HttpStatus.*;
@@ -24,11 +23,12 @@ public class CourierTest {
     @Before
     public void setUp(){
         RestAssured.baseURI = BASE_URL;
-    }
+   }
+
 
     @Test
     @DisplayName("Создание курьера")
-    @Description("Создание курьера сл случайными данными")
+    @Description("Создание курьера со случайными данными")
     public void createCourier(){
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
@@ -84,9 +84,5 @@ public class CourierTest {
         Response response = courierClient.createWithoutPassword(createCourierWithoutPassword);
         response.then().assertThat().statusCode(SC_BAD_REQUEST)
                 .and().body(MESSAGE, equalTo(MASSAGE_BAD_REQUEST));
-    }
-    @After
-    public void tearDown(){
-        //courierClient.delete(id);
     }
 }

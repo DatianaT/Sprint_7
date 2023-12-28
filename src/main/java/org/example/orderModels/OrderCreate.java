@@ -1,7 +1,7 @@
-package org.example.OrderModels;
+package org.example.orderModels;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.example.Order.Order;
+import org.example.order.Order;
 import static io.restassured.RestAssured.given;
 import static org.example.constant.ConstOrder.CREATE_ORDER;
 

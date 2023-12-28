@@ -1,4 +1,4 @@
-package org.example.Order;
+package org.example.order;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class Order {
     private int rentTime;
     private String deliveryDate;
     private String comment;
-    public String[] color;
+    private String[] color;
     private int track;
 
     public String getFirstName() {

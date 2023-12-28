@@ -1,8 +1,8 @@
-package org.example.Order;
+package org.example.order;
 
 public class OrderGenerator {
-    public static Order randomOrder(String firstName, String lastName, String adress, int metroStation, String phone, 
-                                    int rentTime, String deliveryDate, String comment, String[] color)
+    public static Order paramOrder(String firstName, String lastName, String adress, int metroStation, String phone,
+                                   int rentTime, String deliveryDate, String comment, String[] color)
     {
         return new Order()
                 .setFirstName(firstName)

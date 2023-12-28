@@ -2,9 +2,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.example.Order.Order;
-import org.example.Order.OrderGenerator;
-import org.example.OrderModels.OrderCreate;
+import org.example.order.Order;
+import org.example.order.OrderGenerator;
+import org.example.orderModels.OrderCreate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,12 +58,11 @@ public class CreateOrderTest {
     @Description("Создание заказа")
     public void createOrder(){
         OrderGenerator orderGenerator = new OrderGenerator();
-        Order order = orderGenerator.randomOrder(firstName, lastName, adress, metroStation, phone, rentTime,
+        Order order = orderGenerator.paramOrder(firstName, lastName, adress, metroStation, phone, rentTime,
                 deliveryDate, comment, color);
         OrderCreate orderCreate = new OrderCreate();
         Response response = orderCreate.create(order);
         response.then().assertThat().statusCode(SC_CREATED).and().body(TRACK, notNullValue());
-        track = response.path(TRACK);
     }
 
 }

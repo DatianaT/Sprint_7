@@ -4,7 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.courier.CourierClient;
 import org.example.models.Courier;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.apache.http.HttpStatus.*;
@@ -25,8 +24,8 @@ public class LoginTest {
         }
         @Test
         @DisplayName("Авторизация курьера")
-        @Description("Создание курьера и авторизация со всеми обязательными полями")
-        public void createCourier(){
+        @Description("Успешная авторизация")
+        public void loginInSystem(){
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
         Response response = courierClient.create(courier);
@@ -94,13 +93,4 @@ public class LoginTest {
             loginResponse.then().assertThat().statusCode(SC_NOT_FOUND)
                     .and().body(MESSAGE, equalTo(MESSAGE_NOT_FOUND));
         }
-
-        @After
-        public void tearDown(){
-            //courierClient.delete(id);
-        }
-
-
-
-
 }
