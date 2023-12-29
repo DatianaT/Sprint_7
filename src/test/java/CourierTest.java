@@ -17,14 +17,8 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 
 
-public class CourierTest {
+public class CourierTest extends BeforeAndAfter{
     private int id;
-
-    @Before
-    public void setUp(){
-        RestAssured.baseURI = BASE_URL;
-   }
-
 
     @Test
     @DisplayName("Создание курьера")

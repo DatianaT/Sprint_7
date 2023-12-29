@@ -12,12 +12,8 @@ import static org.example.constant.ConstOrder.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
-public class CheckOrderTest {
-        @Before
-        public void setUp()
-        {
-            RestAssured.baseURI = BASE_URL;
-        }
+public class CheckOrderTest extends BeforeAndAfter{
+
 
         @Test
         @DisplayName("Проверка не существующего заказа с передачей пустого номера")

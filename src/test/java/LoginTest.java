@@ -1,10 +1,8 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.courier.CourierClient;
 import org.example.models.Courier;
-import org.junit.Before;
 import org.junit.Test;
 import static org.apache.http.HttpStatus.*;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -15,13 +13,9 @@ import static org.example.constant.ConstCourier.*;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 
-public class LoginTest {
+public class LoginTest extends BeforeAndAfter{
         private int id;
 
-        @Before
-        public void setUp(){
-            RestAssured.baseURI = BASE_URL;
-        }
         @Test
         @DisplayName("Авторизация курьера")
         @Description("Успешная авторизация")

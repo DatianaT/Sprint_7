@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.order.Order;
 import org.example.order.OrderGenerator;
-import org.example.orderModels.OrderCreate;
+import org.example.ordermodels.OrderCreate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

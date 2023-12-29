@@ -1,4 +1,4 @@
-package org.example.orderModels;
+package org.example.ordermodels;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.example.order.Order;
