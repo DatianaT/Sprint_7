@@ -1,0 +1,16 @@
+org/example/Order/Order.class
+org/example/models/CreateCourierWithoutLogin.class
+org/example/Main.class
+utils/Utils.class
+org/example/models/Courier.class
+org/example/models/CourierCredsWithoutPassword.class
+org/example/courier/CourierClient.class
+org/example/models/CreateCourierWithEmptyLogin.class
+org/example/OrderModels/OrderCreate.class
+org/example/Order/OrderGenerator.class
+org/example/models/CreateCourierWithoutPassword.class
+org/example/models/CourierCreds.class
+org/example/courier/CourierGenerator.class
+org/example/constant/ConstOrder.class
+org/example/constant/ConstCourier.class
+org/example/models/CreateCourierWithoutFirstname.class
