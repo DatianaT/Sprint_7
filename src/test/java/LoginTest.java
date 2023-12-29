@@ -2,7 +2,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.example.courier.CourierClient;
+import org.example.courier.DeleteCourier;
 import org.example.models.Courier;
+import org.junit.After;
 import org.junit.Test;
 import static org.apache.http.HttpStatus.*;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -40,6 +42,7 @@ public class LoginTest extends BeforeAndAfter{
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
         Response response = courierClient.login(fromCourierWithWrongLogin(courier));
+        id = response.path(ID);
         response.then().assertThat().statusCode(SC_NOT_FOUND)
                 .and().body(MESSAGE, equalTo(MESSAGE_NOT_FOUND));
     }
@@ -50,6 +53,7 @@ public class LoginTest extends BeforeAndAfter{
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
         Response response = courierClient.login(fromCourierWithWrongPassword(courier));
+        id = response.path(ID);
         response.then().assertThat().statusCode(SC_NOT_FOUND)
                 .and().body(MESSAGE, equalTo(MESSAGE_NOT_FOUND));
     }
@@ -60,6 +64,7 @@ public class LoginTest extends BeforeAndAfter{
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
         Response response = courierClient.login(fromCourierWithEmptyLogin(courier));
+        id = response.path(ID);
         response.then().assertThat().statusCode(SC_BAD_REQUEST)
                 .and().body(MESSAGE, equalTo(MASSAGE_NOT_ENOUGH_DATA_FOR_AUTHORIZ));
     }
@@ -71,6 +76,7 @@ public class LoginTest extends BeforeAndAfter{
         Courier courier = randomCourier();
         CourierClient courierClient = new CourierClient();
         Response response = courierClient.login(fromCourierWithWrongPasswordAndLogin(courier));
+        id = response.path(ID);
         response.then().assertThat().statusCode(SC_NOT_FOUND)
                 .and().body(MESSAGE, equalTo(MESSAGE_NOT_FOUND));
     }
@@ -83,8 +89,19 @@ public class LoginTest extends BeforeAndAfter{
             CourierClient courierClient = new CourierClient();
 
             Response loginResponse = courierClient.login(fromCourier(courier));
+            id = loginResponse.path(ID);
 
             loginResponse.then().assertThat().statusCode(SC_NOT_FOUND)
                     .and().body(MESSAGE, equalTo(MESSAGE_NOT_FOUND));
         }
+    @After
+    public void tearDown()
+    {
+        if(id != 0)
+        {
+            DeleteCourier courierClient = new DeleteCourier();
+            Response responseDelete = courierClient.deleteCourier(id);
+            assertEquals("Неверный статус код при удалении курьера", SC_OK, responseDelete.statusCode());
+        }
+    }
 }
